@@ -1,0 +1,44 @@
+.page-container {
+  display: flex;
+  justify-content: center;
+}
+
+.params-container {
+  border: 1px solid black;
+  border-radius: 10px;
+  display: inline-block;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.input-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px; 
+}
+
+.input-item strong {
+  display: inline;
+  margin-right: 20px;
+}
+
+.input-item input{
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.result-text {
+  color: grey;
+  display: block;
+  margin-top: 10px;
+}
