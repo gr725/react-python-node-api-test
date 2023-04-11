@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 .page-container {
   display: flex;
   justify-content: center;
@@ -14,12 +17,13 @@
 
 .input-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 10px; 
 }
 
 .input-item strong {
   display: inline;
+  line-height: 30px;;
   margin-right: 20px;
 }
 
@@ -30,14 +34,15 @@
 }
 
 button {
-  width: 100px;
+  width: 120px;
   height: 30px;
+  margin-left: 10px;
   font-weight: bold;
-  margin-top: 10px;
   text-align: center;
 }
 
 .result-text {
+  width: 350px;
   color: grey;
   display: block;
   margin-top: 10px;

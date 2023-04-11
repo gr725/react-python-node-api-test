@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from "react-helmet";
 import axios from 'axios';
 
 import './App.css'
-
+  
 function App() {
-  const [result, setResult] = useState([]);
+  const [dataForSet, setDataForSet] = useState([]);
+  const [dataForGet, setDataForGet] = useState([]);
 
-
-  const callApi = async () => {
-    const base_url = 'https://api-nightly.relmak.com/api/merchant_page_initial_data';
+  const getMetaData = async () => {
+    // const base_url = 'https://api-nightly.relmak.com/api/merchant_page_initial_data';
+    const base_url = 'http://127.0.0.1:5000/api/merchant_page_initial_data';
 
     const path = 'John';
     const titleQuery = 'title';
@@ -23,16 +25,47 @@ function App() {
         },
       });
     const data  = res.data;
-    console.log(data);
+    setDataForSet(data);
+  }
+
+  const showMetadata = async () => {
+    // const base_url = 'https://api-nightly.relmak.com/api/merchant_page_initial_data';
+    const base_url = 'http://127.0.0.1:5000/api/get_meta_data';
+
+    const siteUrl = 'http://localhost:3000/';
+
+    const res = await axios.get(
+      base_url, 
+      {
+        params: {
+          siteUrl: siteUrl,
+        },
+      });
+    const data  = res.data;
+    setDataForGet(data);
   }
 
   return (
     <div className='page-container'>
       <div className="params-container">
-
-      <button type='button' onClick={ callApi }>Call</button>
-      <span className='result-text'>{ result }</span>
-    </div>
+        <div className='input-item'>
+          {/* <strong>Url</strong>
+          <input readOnly value={}/>  */}
+          <button type='button' onClick={ getMetaData }>Get Metadata</button>
+          <button type='button' onClick={ showMetadata }>Show Metadata</button>
+        </div>
+        <div className='result-text'>
+          <p>{ dataForGet.title }</p>
+          <p>{ dataForGet.description }</p>
+          <img src={ dataForGet.banner } />
+        </div>
+      </div>
+      <Helmet>
+        <title>{ dataForSet.title }</title>
+        <meta property="og:title" content={ dataForSet.title }></meta>
+        <meta property="og:description" content={ dataForSet.description }></meta>
+        <meta property="og:image" content={ dataForSet.banner }></meta>
+      </Helmet>
     </div>
   );
 }
